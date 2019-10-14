@@ -34,11 +34,12 @@ class HomeController extends Controller
       $q4="SELECT drugs.drugName, prescriptions.quantity FROM prescriptions INNER JOIN drugs ON prescriptions.drug_id = drugs.id GROUP BY drugs.drugName ORDER BY prescriptions.quantity DESC LIMIT 5";
 
       $graphData = [];
+
       $queryList = [$q1, $q2, $q3, $q4];
       foreach ($queryList as $key => $value) {
         $graphData[$key] = $queryParser = DB::select($value);
       }
-      // dd($graphData);
+      dd($graphData);
       // return dd($graphData);
         return view('home' , compact('graphData'));
     }
